@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSignInAlt, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../redux/slices/authSlice";
+import { Avatar, IconButton, Menu } from "@mui/material";
+import { blue } from "@mui/material/colors";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+	const [anchorEl, setAnchorEl] = useState(null);
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const { user, userData } = useSelector((state) => state.auth);
 
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
 	const remove = () => {
 		dispatch(removeUser());
 		navigate("/login");
+		toast.success("Logged out Successfully");
+		handleClose();
 	};
 
 	return (
@@ -39,25 +54,31 @@ const Navbar = () => {
 						<ul className="navbar-nav ml-auto mb-2 mb-lg-0">
 							{userData !== null ? (
 								<li className="nav-item dropstart" style={{ marginRight: "10px", fontSize: "18px" }}>
-									<a className="nav-link active " role="button" data-bs-toggle="dropdown" aria-expanded="false">
-										<FaUser /> Profile
-									</a>
-									<ul className="dropdown-menu">
-										<li>
-											<a className="dropdown-item">{userData && userData.name}</a>
-										</li>
-										<li>
-											<a className="dropdown-item">{userData && userData.email}</a>
-										</li>
-										<li>
-											<hr className="dropdown-divider" />
-										</li>
-										<li>
-											<a className="dropdown-item" onClick={remove}>
-												Sign out
-											</a>
-										</li>
-									</ul>
+									<IconButton aria-controls="profile-dropdown" aria-haspopup="true" onClick={handleClick}>
+										<Avatar sx={{ bgcolor: blue[700], height: "35px", width: "35px" }} alt={name} src="" />
+									</IconButton>
+									<Menu
+										id="profile-dropdown"
+										anchorEl={anchorEl}
+										keepMounted
+										open={Boolean(anchorEl)}
+										onClose={handleClose}
+									>
+										<div
+											style={{
+												padding: "10px 20px",
+												display: "flex",
+												flexDirection: "column",
+												// alignItems: "center",
+											}}
+										>
+											<h5>{userData && userData.name}</h5>
+											<p>{userData && userData.email}</p>
+											<button onClick={remove} className="logout">
+												Logout
+											</button>
+										</div>
+									</Menu>
 								</li>
 							) : (
 								<>

@@ -47,3 +47,19 @@
     outline:none;
     border:none;
 }
+
+i {
+    cursor: pointer;
+  }
+  .logout {
+    position: relative;
+    margin-bottom: 10px;
+    width: 80px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 3px 0px 3px 0px;
+  }

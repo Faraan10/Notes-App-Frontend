@@ -35,7 +35,7 @@ const Register = () => {
 			return;
 		} else {
 			dispatch(registerUserAsync(info));
-			if (user || user.createUser) {
+			if (user || user.createUser || user.createUser.email) {
 				navigate("/login");
 			}
 			dispatch(reset());
