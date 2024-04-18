@@ -3,6 +3,12 @@
     padding: 0;
 }
 
+body{
+background-color: #f7f1f1;
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+/* REGISTER LOGIN CSS */
 .register{
     display: flex;
     justify-content: center;
@@ -41,13 +47,15 @@
 .wrapper .submit{
     width:100%;
     height:40px;
-    background-color: black;
+    background-color: rgb(25, 29, 31);
     color:white;
     border-radius: 2px;
     outline:none;
     border:none;
 }
 
+
+/* NAVBAR CSS */
 i {
     cursor: pointer;
   }
@@ -55,11 +63,120 @@ i {
     position: relative;
     margin-bottom: 10px;
     width: 80px;
-    background-color: black;
+    background-color: rgb(25, 29, 31);
     color: white;
     font-size: 16px;
     border: none;
     outline: none;
     border-radius: 3px;
     padding: 3px 0px 3px 0px;
+  }
+
+
+/* HOME LAYOUT CSS */
+
+.note {
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    margin: 16px;
+    float: left;
+    position: relative;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .note{
+        width:90%;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    .note{
+        width:42%;
+    }
+  }
+
+  @media only screen and (min-width: 992px) {
+    .note{
+        width:30%;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .note{
+        width:22%;
+    }
+  }
+  .note h1 {
+    font-size: 1.1em;
+    margin-bottom: 6px;
+  }
+  
+  .note p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  
+  .note button {
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    color: #f5ba13;
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+  }
+  
+
+.btn{
+    background-color: rgb(25, 29, 31);
+    border-radius: 50%;
+    font-size: 10px;
+    color: white;
+    box-shadow: 0 0 30px black;
+    transition: all 300ms ease;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn.add__btn {
+    position: fixed;
+    bottom: 4rem;
+    right: 6rem;
+    padding: 1rem;
+}
+
+
+
+.align-buttons{
+    text-align: end;
+    position: absolute;
+    bottom: 10px;
+    right:5px;
+    padding: 20px 0px 0px 20px;
+  }
+  
+  .align{
+    margin-right:8px;
+  }
+
+
+/* FOOTER CSS */
+footer {
+    text-align:center;
+    bottom: 0;
+    height: 3.5rem;
+  }
+  
+  footer p {
+    color: #ccc;
   }
