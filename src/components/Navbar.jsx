@@ -34,7 +34,7 @@ const Navbar = () => {
 		<>
 			<nav className="navbar navbar-expand-lg bg-body" data-bs-theme="dark">
 				<div className="container-fluid">
-					<Link className="navbar-brand" style={{ fontSize: "32px" }}>
+					<Link to="/" className="navbar-brand" style={{ fontSize: "32px" }}>
 						Notes App
 					</Link>
 					<button

@@ -8,7 +8,7 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { user, isSuccess, isError } = useSelector((state) => state.auth);
+	const { user, isSuccess } = useSelector((state) => state.auth);
 
 	const [info, setInfo] = useState({
 		email: "",
@@ -35,11 +35,11 @@ const Login = () => {
 		}
 	}, [user, isSuccess]);
 
-	useEffect(() => {
-		const token = localStorage.getItem("user");
+	// useEffect(() => {
+	// 	const token = localStorage.getItem("user");
 
-		token && dispatch(getUserAsync());
-	}, []);
+	// 	token && dispatch(getUserAsync());
+	// }, []);
 
 	return (
 		<>

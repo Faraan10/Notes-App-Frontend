@@ -24,8 +24,8 @@ const Register = () => {
 		setInfo({ ...info, [e.target.name]: e.target.value });
 	};
 	// console.log(info);
-	console.log(user);
-	console.log(user?.createUser);
+	// console.log(user);
+	// console.log(user?.createUser);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

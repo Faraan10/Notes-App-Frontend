@@ -29,7 +29,7 @@ export const registerUserAsync = createAsyncThunk("auth/register", async (user) 
 
 export const loginUserAsync = createAsyncThunk("auth/login", async (user) => {
 	const response = await loginUser(user);
-	console.log(response);
+	// console.log(response);
 	if (response.token) {
 		toast.success(response.message);
 		localStorage.setItem("user", JSON.stringify(response.token));
@@ -41,7 +41,6 @@ export const loginUserAsync = createAsyncThunk("auth/login", async (user) => {
 
 export const getUserAsync = createAsyncThunk("auth/getUser", async () => {
 	const response = await getUser();
-	console.log(response);
 	return response;
 });
 
@@ -83,7 +82,6 @@ const authSlice = createSlice({
 			state.isError = true;
 			state.isSuccess = true;
 			state.user = action.payload;
-			console.log(action.payload);
 		});
 		builder.addCase(loginUserAsync.pending, (state) => {
 			state.isLoading = true;
