@@ -1,8 +1,9 @@
 import axios from "axios";
+import url from "../../constants";
 
 const registerUser = async (data) => {
 	const response = await axios({
-		url: `http://localhost:1050/auth/register`,
+		url: `${url}/auth/register`,
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		data: JSON.stringify(data),

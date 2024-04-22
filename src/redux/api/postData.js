@@ -1,9 +1,10 @@
 import axios from "axios";
+import url from "../../constants";
 
 const postData = async (data) => {
 	const token = JSON.parse(localStorage.getItem("user"));
 	const response = await axios({
-		url: "http://localhost:1050/notes/create/",
+		url: `${url}/notes/create/`,
 		method: "POST",
 		headers: { "Content-Type": "application/json", token },
 		data: JSON.stringify(data),

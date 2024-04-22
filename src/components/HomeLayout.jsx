@@ -28,6 +28,12 @@ const HomeLayout = () => {
 			navigate("/login");
 		}
 
+		if (notesData) {
+			dispatch(getNotes());
+		}
+	}, []);
+
+	useEffect(() => {
 		if (notesData && sort === false) {
 			dispatch(getNotes());
 		} else {
@@ -98,7 +104,7 @@ const HomeLayout = () => {
 													color="text.secondary"
 													style={{ marginTop: "10px", marginLeft: "15px" }}
 												>
-													{item.date.slice(0, 10)}
+													{item?.date?.slice(0, 10)}
 												</Typography>
 											</Link>
 											<CardActions>
