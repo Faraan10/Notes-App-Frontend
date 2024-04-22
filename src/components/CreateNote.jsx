@@ -51,6 +51,7 @@ const CreateNote = () => {
 								size="small"
 								name="title"
 								value={title}
+								required
 								placeholder="Enter title here"
 								onChange={handleChange}
 							/>
@@ -65,6 +66,7 @@ const CreateNote = () => {
 								rows={3}
 								name="description"
 								value={description}
+								required
 								placeholder="Enter description here"
 								onChange={handleChange}
 							/>
@@ -79,6 +81,7 @@ const CreateNote = () => {
 								size="small"
 								name="imageUrl"
 								value={imageUrl}
+								required
 								placeholder="Enter image url here"
 								onChange={handleChange}
 							/>
