@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createNotes } from "../redux/slices/notesSlice";
-
 import { Button, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { toast } from "react-toastify";
 
 const CreateNote = () => {
 	const dispatch = useDispatch();
@@ -23,6 +23,10 @@ const CreateNote = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		// console.log(info);
+		if (!imageUrl.match(/^https?:\/\/.*\/.*\.(png|webp|jpeg|jpg)\??.*$/gim)) {
+			toast.error("Enter a valid imageUrl");
+			return;
+		}
 		dispatch(createNotes(info));
 		setInfo({
 			title: "",
@@ -41,19 +45,43 @@ const CreateNote = () => {
 							<label htmlFor="title" className="form-label">
 								Title
 							</label>
-							<TextField fullWidth hiddenLabel size="small" name="title" value={title} onChange={handleChange} />
+							<TextField
+								fullWidth
+								hiddenLabel
+								size="small"
+								name="title"
+								value={title}
+								placeholder="Enter title here"
+								onChange={handleChange}
+							/>
 						</div>
 						<div className="mb-3">
 							<label htmlFor="description" className="form-label">
 								Description
 							</label>
-							<TextField fullWidth multiline rows={3} name="description" value={description} onChange={handleChange} />
+							<TextField
+								fullWidth
+								multiline
+								rows={3}
+								name="description"
+								value={description}
+								placeholder="Enter description here"
+								onChange={handleChange}
+							/>
 						</div>
 						<div className="mb-3">
 							<label htmlFor="tag" className="form-label">
-								Image Url
+								Image Url ( Only png, webp, jpeg, jpg will be accepted)
 							</label>
-							<TextField fullWidth hiddenLabel size="small" name="imageUrl" value={imageUrl} onChange={handleChange} />
+							<TextField
+								fullWidth
+								hiddenLabel
+								size="small"
+								name="imageUrl"
+								value={imageUrl}
+								placeholder="Enter image url here"
+								onChange={handleChange}
+							/>
 						</div>
 					</DialogContent>
 					<DialogActions>

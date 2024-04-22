@@ -28,7 +28,7 @@ const SingleNote = () => {
 	return (
 		<div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
 			<Card sx={{ maxWidth: 900 }}>
-				<CardMedia component="img" alt="green iguana" height="100%" image={data?.imageUrl} />
+				<CardMedia component="img" alt="image not working" height="100%" image={data?.imageUrl} />
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="div">
 						{data?.title}
