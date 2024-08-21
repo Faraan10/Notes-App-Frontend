@@ -72,7 +72,7 @@ const Register = () => {
 						</div>
 						<div className="input-box">
 							<input
-								type="current-password"
+								type="password"
 								className="form-control"
 								name="password"
 								value={password}
