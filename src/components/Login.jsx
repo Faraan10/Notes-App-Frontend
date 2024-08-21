@@ -60,7 +60,7 @@ const Login = () => {
 						</div>
 						<div className="input-box">
 							<input
-								type="current-password"
+								type="password"
 								className="form-control"
 								placeholder="Enter your password"
 								required
