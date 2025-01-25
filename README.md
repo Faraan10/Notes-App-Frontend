@@ -1,4 +1,4 @@
-Live At: https://notes-l57e3its1-muhammed-faraans-projects.vercel.app
+Live At: https://notes-app-muhammed-faraans-projects.vercel.app
 
 Description:
 
