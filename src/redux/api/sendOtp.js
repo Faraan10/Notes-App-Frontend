@@ -1,9 +1,10 @@
 import axios from "axios";
 import url from "../../constants";
 
-const loginUser = async (data) => {
+const sendOtp = async (data) => {
   const response = await axios({
-    url: `${url}/auth/login`,
+    url: `${url}/auth/login/request-otp`,
+    // url: "http://localhost:5000/auth/login/request-otp",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     data: JSON.stringify(data),
@@ -13,4 +14,4 @@ const loginUser = async (data) => {
   return response;
 };
 
-export default loginUser;
+export default sendOtp;
