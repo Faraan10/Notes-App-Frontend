@@ -50,7 +50,7 @@ const Login = () => {
     const token = localStorage.getItem("user");
     token && dispatch(getUserAsync());
     if (token) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [user, isSuccess]);
 
