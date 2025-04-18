@@ -1,147 +1,90 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { BsPlusLg } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-import { getNotes, getNotesSort, deleteNotes } from "../redux/slices/notesSlice";
-import Spinner from "./Spinner";
-import { HiOutlineSortAscending } from "react-icons/hi";
-import { HiOutlineSortDescending } from "react-icons/hi";
+import React from "react";
+import {
+  Container,
+  Typography,
+  Box,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+} from "@mui/material";
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import SortIcon from "@mui/icons-material/Sort";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Link } from "react-router-dom";
 
-const HomeLayout = () => {
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
+const StaticHome = () => {
+  return (
+    <Container maxWidth="lg" sx={{ py: 8 }}>
+      {/* Header */}
+      <Box textAlign="center" mb={6}>
+        <Typography variant="h3" fontWeight="bold" gutterBottom>
+          Welcome to NoteVault
+        </Typography>
+        <Typography variant="h6" color="text.secondary">
+          A sleek, secure MERN-powered notes app to organize your thoughts
+          effortlessly.
+        </Typography>
+      </Box>
 
-	const { notesData, isLoading } = useSelector((state) => state.notes);
+      {/* Feature Highlights */}
+      <Grid container spacing={4}>
+        {[
+          {
+            icon: <NoteAddIcon color="primary" sx={{ fontSize: 40 }} />,
+            title: "Add Notes",
+            desc: "Create new notes with title, description, and optional images.",
+          },
+          {
+            icon: <VisibilityIcon color="primary" sx={{ fontSize: 40 }} />,
+            title: "View with Metadata",
+            desc: "View all notes on your dashboard with date and content preview.",
+          },
+          {
+            icon: <SortIcon color="primary" sx={{ fontSize: 40 }} />,
+            title: "Sort Notes",
+            desc: "Sort your notes by ascending or descending creation date.",
+          },
+          {
+            icon: <DeleteSweepIcon color="error" sx={{ fontSize: 40 }} />,
+            title: "Delete Notes",
+            desc: "Easily remove notes with one click from your dashboard.",
+          },
+        ].map((feature, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <Card sx={{ textAlign: "center", p: 2, minHeight: 220 }}>
+              <CardContent>
+                <Box mb={2}>{feature.icon}</Box>
+                <Typography variant="h6" gutterBottom>
+                  {feature.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {feature.desc}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
 
-	const [search, setSearch] = useState("");
-
-	const [sort, setSort] = useState(false);
-
-	useEffect(() => {
-		const token = localStorage.getItem("user");
-		if (token === null || token === undefined) {
-			navigate("/login");
-		}
-
-		if (notesData) {
-			dispatch(getNotes());
-		}
-	}, []);
-
-	useEffect(() => {
-		if (notesData && sort === false) {
-			dispatch(getNotes());
-		} else {
-			dispatch(getNotesSort());
-		}
-	}, [sort]);
-
-	const deleteNote = (id) => {
-		dispatch(deleteNotes(id));
-	};
-
-	if (isLoading) {
-		return <Spinner />;
-	}
-
-	return (
-		<section>
-			<div className="container" style={{ marginTop: "5%" }}>
-				<div className="row">
-					{notesData && notesData.length >= 1 && (
-						<div className="form" style={{ display: "flex", marginBottom: "5%" }}>
-							<input
-								className="searchfield"
-								type="search"
-								onChange={(e) => setSearch(e.target.value)}
-								placeholder="Search Notes"
-								aria-label="Search"
-							/>
-							<HiOutlineSortAscending
-								style={{ fontSize: "30px", marginLeft: "40px", marginTop: "10px", cursor: "pointer" }}
-								onClick={() => setSort(true)}
-							/>
-							<HiOutlineSortDescending
-								style={{ fontSize: "30px", marginLeft: "20px", marginTop: "10px", cursor: "pointer" }}
-								onClick={() => setSort(false)}
-							/>
-						</div>
-					)}
-
-					{notesData && notesData.length >= 1 ? (
-						notesData
-							.filter((item) => {
-								return search.toLowerCase() === "" ? item : item.title.toLowerCase().includes(search);
-							})
-							.map((item) => (
-								<div
-									key={item._id}
-									className=" col-sm-12 col-md-6 col-lg-4"
-									style={{ padding: "10px", marginTop: "1.5%" }}
-								>
-									<Card sx={{ maxWidth: 300, maxHeight: 350 }}>
-										<CardActionArea>
-											<Link
-												to={`/${item._id}`}
-												state={item}
-												style={{ textDecoration: "none", color: "chocolate", padding: "5px" }}
-											>
-												<CardContent>
-													<Typography gutterBottom variant="h5" component="div" style={{ color: "black" }}>
-														{item.title}
-													</Typography>
-													<Typography variant="body2" color="text.secondary" className="card_description_truncate">
-														{item.description}
-													</Typography>
-												</CardContent>
-												<Typography
-													variant="body2"
-													color="text.secondary"
-													style={{ marginTop: "10px", marginLeft: "15px" }}
-												>
-													{item?.date?.slice(0, 10)}
-												</Typography>
-											</Link>
-											<CardActions>
-												<div className="align-buttons">
-													<i
-														className="fa-solid fa-trash align fa-lg"
-														style={{ color: "red", padding: "5px" }}
-														onClick={() => deleteNote(item._id)}
-													></i>
-												</div>
-											</CardActions>
-										</CardActionArea>
-									</Card>
-								</div>
-							))
-					) : (
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								height: "60vh",
-								fontFamily: "monospace",
-							}}
-						>
-							<h1>Create New Notes</h1>
-						</div>
-					)}
-				</div>
-			</div>
-			<Link to="/create">
-				<button className="btn add__btn">
-					<BsPlusLg style={{ fontSize: "18px" }} />
-				</button>
-			</Link>
-		</section>
-	);
+      {/* Call to Action */}
+      <Box textAlign="center" mt={8}>
+        <Typography variant="h5" gutterBottom>
+          Ready to manage your notes like a pro?
+        </Typography>
+        <Button
+          component={Link}
+          to="/login"
+          variant="contained"
+          size="large"
+          sx={{ mt: 2, px: 5, py: 1.5 }}
+        >
+          Get Started
+        </Button>
+      </Box>
+    </Container>
+  );
 };
 
-export default HomeLayout;
+export default StaticHome;
