@@ -81,13 +81,13 @@ const HomeLayout = () => {
           variant="contained"
           size="large"
           sx={{
-            backgroundColor: "#212121", // dark gray / almost black
+            backgroundColor: "#212121",
             color: "#ffffff",
             px: 5,
             py: 1.5,
             mt: 3,
             "&:hover": {
-              backgroundColor: "#000000", // pure black on hover
+              backgroundColor: "#000000",
             },
           }}
         >
