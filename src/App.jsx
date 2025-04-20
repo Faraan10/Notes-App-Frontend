@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLayout />} />
           <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/:id" element={<SingleNote />} />
+          <Route path="/dashboard/:id" element={<SingleNote />} />
           <Route path="/create" element={<CreateNote />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
