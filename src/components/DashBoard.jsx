@@ -106,7 +106,7 @@ const DashBoard = () => {
                   <Card sx={{ maxWidth: 300, maxHeight: 350 }}>
                     <CardActionArea>
                       <Link
-                        to={`/${item._id}`}
+                        to={`/dashboard/${item._id}`}
                         state={item}
                         style={{
                           textDecoration: "none",
