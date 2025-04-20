@@ -80,7 +80,16 @@ const HomeLayout = () => {
           to="/login"
           variant="contained"
           size="large"
-          sx={{ mt: 2, px: 5, py: 1.5 }}
+          sx={{
+            backgroundColor: "#212121", // dark gray / almost black
+            color: "#ffffff",
+            px: 5,
+            py: 1.5,
+            mt: 3,
+            "&:hover": {
+              backgroundColor: "#000000", // pure black on hover
+            },
+          }}
         >
           Get Started
         </Button>
